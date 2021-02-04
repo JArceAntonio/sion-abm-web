@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import 'sweetalert2/src/sweetalert2.scss'
+import Layout from "./components/Layout";
+import PersonList from "./pages/PersonList";
+import CreatePerson from "./pages/CreatePerson";
+import EditPerson from "./pages/EditPerson";
+import AddButton from "./components/AddButton";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path="/">
+              <PersonList/>
+            </Route>
+
+            <Route exact path="/create">
+              <CreatePerson/>
+            </Route>
+
+            <Route exact path="/deleted">
+              <CreatePerson/>
+            </Route>
+
+            <Route exact path="/edit/:userId">
+              <EditPerson/>
+            </Route>
+          </Switch>
+        </Layout>
+        <AddButton/>
+      </Router>
+
   );
 }
 
